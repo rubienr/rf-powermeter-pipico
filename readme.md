@@ -7,14 +7,14 @@ Core 0 runs the LVGL user interface and core 1 performs continuous sampling.
 Display transfers and ADC sampling use DMA.
 
 ```text
- RF probe                                    Pico 2                 LCD and controls
- ┌──────────────────────┐                  ┌────────┐  ── SPI1 ──▶  240 × 240 display
- │ RF input ──▶ AD8318  │                  │ RP2350 │  ◀─ GPIO ───  joystick and buttons
- │             │ analog │                  │        │
- │             ▼        │                  │        │  core 0: UI (LVGL)
+ RF probe                                     Pico 2                   LCD and controls
+ ┌───────────────────────┐                   ┌────────┐   ── SPI1 ──▶ 240 × 240 display
+ │ RF input ──▶ AD8318  │                   │ RP2350 │  ◀─ GPIO ───  joystick and buttons
+ │             │ analog  │                   │        │
+ │             ▼         │                   │        │  core 0: UI (LVGL)
  │            AD7887 ◀──┼──── SPI0 ───────▶│        │  core 1: sampling
- │ TEMP feedback ───────┼─ analog / ADC0 ─▶│        │
- └──────────────────────┘                  └────────┘
+ │ TEMP feedback ────────┼─ analog / ADC0 ─▶│        │
+ └───────────────────────┘                   └────────┘
 ```
 
 The diagram includes the intended analog probe-temperature feedback. The
